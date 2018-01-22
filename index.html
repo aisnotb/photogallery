@@ -6,34 +6,59 @@
     <style media="screen">
       *{
         margin: 0;
+        margin: 0;
+      }
+
+      BODY{
+          background: #000;
+          overflow: HIDDEN;
       }
 
       .container{
-        width: 1500px;
-        height: 1300px;
-        border: 1px solid black;
+        height: 250px;
+        margin: 150px auto;
+        position: relative;
+        transform-style: preserve-3d; /* 3d 场景  */
+        perspective: 800px; /* 景深 */
+        border: 1px solid #fff;
       }
 
       .container img{
-        width: 200px;
-        height: 200px;
+        width: 300px;
+        height: 250px;
+        box-shadow: 3px;
+        position: absolute;
+        box-shadow: 0 0 5px #fff;
+        -webkit-box-reflect: below 5px -webkit-linear-gradient(top, rgba(0,0,0,.1), rgba(0,0,0,.4)); /* only chrome supports it*/
+        cursor: pointer;
+        transition: 1s;
       }
 
-          
     </style>
   </head>
   <body>
     <div class="container">
-      <img src="images/1.jpeg" alt="">
-      <img src="1.jpeg" alt="">
-      <img src="1.jpeg" alt="">
-      <img src="1.jpeg" alt="">
-      <img src="1.jpeg" alt="">
-      <img src="1.jpeg" alt="">
-      <img src="1.jpeg" alt="">
-      <img src="1.jpeg" alt="">
-      <img src="1.jpeg" alt="">
-      <img src="1.jpeg" alt="">
+      <img src="images/1.jpeg" alt="" style="left: 300px; transform: rotateY(45deg)">
+      <img src="images/2.jpg" alt=""  style="left: 400px; transform: rotateY(45deg)">
+      <img src="images/3.jpg" alt=""  style="left: 500px; transform: translateZ(60px);">
+      <img src="images/4.jpg" alt=""  style="left: 600px; transform: rotateY(-45deg)">
+      <img src="images/5.jpg" alt=""  style="left: 700px; transform: rotateY(-45deg)">
     </div>
+
+    <script>
+        window.onload = function(){
+            var oImg = document.getElementsByTagName("img");
+
+            for (var i = 0; i < oImg.length; i++) {
+                var item = oImg[i];
+                oImg[i].onclick = function(){
+                    for (var j = 0; j <  oImg.length; j++) {
+                      oImg[j].style.left = oImg[j].offsetLeft - 100 + 'px';
+                    }
+                }
+            }
+        }
+    </script>
+
   </body>
 </html>
