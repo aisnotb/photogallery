@@ -34,28 +34,45 @@
         transition: 1s;
       }
 
+      .container img.left{
+        transform: rotateY(45deg) transform: translateZ(-100px)
+      }
+      .container img.middle{
+        transform: translateZ(60px);
+      }
+      .container img.right{
+        transform: rotateY(-45deg) translateZ(-100px);
+      }
+
     </style>
   </head>
   <body>
     <div class="container">
-      <img src="images/1.jpeg" alt="" style="left: 300px; transform: rotateY(45deg)">
-      <img src="images/2.jpg" alt=""  style="left: 400px; transform: rotateY(45deg)">
-      <img src="images/3.jpg" alt=""  style="left: 500px; transform: translateZ(60px);">
-      <img src="images/4.jpg" alt=""  style="left: 600px; transform: rotateY(-45deg)">
-      <img src="images/5.jpg" alt=""  style="left: 700px; transform: rotateY(-45deg)">
+      <img src="images/1.jpeg" alt="" style="left:210px;" class="left">
+      <img src="images/2.jpg" alt=""  style="left:310px;" class="left">
+      <img src="images/3.jpg" alt=""  style="left:410px;" class="middle">
+      <img src="images/4.jpg" alt=""  style="left:510px;" class="right">
+      <img src="images/5.jpg" alt=""  style="left:610px;" class="right">
     </div>
 
     <script>
-        window.onload = function(){
-            var oImg = document.getElementsByTagName("img");
-
-            for (var i = 0; i < oImg.length; i++) {
-                var item = oImg[i];
-                oImg[i].onclick = function(){
-                    for (var j = 0; j <  oImg.length; j++) {
-                      oImg[j].style.left = oImg[j].offsetLeft - 100 + 'px';
-                    }
-                }
+        var oImg = document.getElementsByTagName("img");
+        var mIndex = 2;
+        for (var i = 0; i < oImg.length; i++) {
+            oImg[i].index = i;
+            oImg[i].onclick = function(){
+            for (var j = 0; j <  oImg.length; j++) {
+               var nIndex = this.index;
+               oImg[j].style.left = oImg[j].offsetLeft - 100 * (nIndex - mIndex) + 'px';
+               if (j < nIndex) {
+                oImg[j].className = 'left';
+               }else if(j == nIndex){
+                oImg[j].className = 'middle'
+               }else{
+                oImg[j].className = 'right';
+               }
+            }
+            mIndex = nIndex;
             }
         }
     </script>
